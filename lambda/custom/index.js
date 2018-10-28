@@ -8,27 +8,25 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the Alexa Skills Kit, you can say hello!';
+    const speechText = 'Welcome to the CTA Alexa skill, you can ask for train arrival estimated from your home!';
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .withSimpleCard('Hello World', speechText)
       .getResponse();
   },
 };
 
-const HelloWorldIntentHandler = {
+const TrainArrivalEstimatesRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
+      && handlerInput.requestEnvelope.request.intent.name === 'TrainArrivalEstimatesRequest';
   },
   handle(handlerInput) {
     const speechText = 'Hello World!';
 
     return handlerInput.responseBuilder
       .speak(speechText)
-      .withSimpleCard('Hello World', speechText)
       .getResponse();
   },
 };
@@ -39,12 +37,11 @@ const HelpIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
-    const speechText = 'You can say hello to me!';
+    const speechText = 'You can ask me: when is the next train toward Harlem. Or, when is the next train towards 63rd';
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .withSimpleCard('Hello World', speechText)
       .getResponse();
   },
 };
@@ -60,7 +57,6 @@ const CancelAndStopIntentHandler = {
 
     return handlerInput.responseBuilder
       .speak(speechText)
-      .withSimpleCard('Hello World', speechText)
       .getResponse();
   },
 };
@@ -95,10 +91,10 @@ const skillBuilder = Alexa.SkillBuilders.custom();
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
-    HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
-    SessionEndedRequestHandler
+    SessionEndedRequestHandler,
+    TrainArrivalEstimatesRequestHandler
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();

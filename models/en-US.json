@@ -1,9 +1,30 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "greeter",
+      "invocationName": "The CTA",
       "types": [
-
+        {
+          "values": [
+            {
+              "name": {
+                "value": "harlem",
+                "synonyms": ["harlem", "work", "harlem ave", "west"]
+              }
+            }
+          ],
+          "name": "WEST_DIRECTION"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "63rd",
+                "synonyms": ["63rd", "63rd street", "the city", "east", "ashland", "63rd and ashland"]
+              }
+            }
+          ],
+          "name": "EAST_DIRECTION"
+        }
       ],
       "intents": [
         {
@@ -25,14 +46,26 @@
           ]
         },
         {
-          "name": "HelloWorldIntent",
+          "name": "TrainArrivalEstimatesRequest",
           "slots": [
-
+            {
+              "name": "westDirection",
+              "type": "WEST_DIRECTION"
+            },
+            {
+              "name": "eastDirection",
+              "type": "EAST_DIRECTION"
+            }
           ],
           "samples": [
-            "hello",
-            "say hello",
-            "say hello world"
+            "what is the next train going towards {westDirection}",
+            "what is the next train going towards {eastDirection}",
+            "what is the next train going {westDirection}",
+            "what is the next train going {eastDirection}",
+            "what is the next train going to {westDirection}",
+            "what is the next train going to {eastDirection}",
+            "when is the next train going to {westDirection}",
+            "when is the next train going to {eastDirection}"
           ]
         }
       ]
