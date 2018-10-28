@@ -5,9 +5,9 @@
         "en-US": {
           "summary": "Sample Short Description",
           "examplePhrases": [
-            "Alexa ask the CTA when is the next train toward Harlem",
-            "Alexa ask the CTA when is the next train toward the city",
-            "Alexa ask the CTA when is the next train to Harlem"
+            "Alexa ask the CTA when the next train to the city is",
+            "Alexa ask the CTA when the next train to Harlem is",
+            "Alexa ask the CTA when the next train to work is"
           ],
           "name": "CTA",
           "description": "Get train arrival times for the Green line."
