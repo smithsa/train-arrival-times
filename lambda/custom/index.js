@@ -14,7 +14,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the CTA train tracker Alexa skill, get CTA arrival estimates from your home!';
+    const speechText = 'Welcome to the CTA train tracker Alexa skill, get CTA arrival estimates from your home! What do you need to know?';
 
     return handlerInput.responseBuilder
       .speak(speechText)
