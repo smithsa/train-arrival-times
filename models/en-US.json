@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "The CTA",
+      "invocationName": "CTA",
       "types": [
         {
           "values": [

@@ -2,6 +2,12 @@
 /* eslint-disable  no-console */
 
 const Alexa = require('ask-sdk-core');
+const helperFunctions = require('helper');
+
+const STATION_CODE = "41260";
+const API_KEY = "ee1c97f9b7a5442ea271d0e6072ea800";
+const API_BASE_URL = "https://lapi.transitchicago.com/api/1.0/ttarrivals.aspx";
+const API_CALL = API_BASE_URL+"?key="+API_KEY+"&mapid="+STATION_CODE;
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -23,6 +29,7 @@ const TrainArrivalEstimatesRequestHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'TrainArrivalEstimatesRequest';
   },
   handle(handlerInput) {
+    //get the next train times here
     const speechText = 'Hello World!';
 
     return handlerInput.responseBuilder
