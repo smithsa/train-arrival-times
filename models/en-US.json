@@ -1,14 +1,14 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "CTA",
+      "invocationName": "cta",
       "types": [
         {
           "values": [
             {
               "name": {
                 "value": "harlem",
-                "synonyms": ["harlem", "work", "harlem ave", "west"]
+                "synonyms": ["harlem", "work", "harlem ave", "harlem and lake", "west"]
               }
             }
           ],
@@ -18,8 +18,8 @@
           "values": [
             {
               "name": {
-                "value": "63rd",
-                "synonyms": ["63rd", "63rd street", "the city", "east", "ashland", "63rd and ashland"]
+                "value": "63rd Street",
+                "synonyms": ["63rd", "63rd street", "the city", "east", "ashland", "63rd and ashland", "63rd street and ashland", "63rd street and ashland avenue"]
               }
             }
           ],
@@ -65,7 +65,15 @@
             "what is the next train going to {westDirection}",
             "what is the next train going to {eastDirection}",
             "when is the next train going to {westDirection}",
-            "when is the next train going to {eastDirection}"
+            "when is the next train going to {eastDirection}",
+            "when is the next train towards {westDirection} is",
+            "when is the next train towards {eastDirection} is",
+            "get the next train towards {westDirection}",
+            "get the next train towards {eastDirection}",
+            "get the next train to {westDirection}",
+            "get the next train to {eastDirection}",
+            "get the next train going towards {westDirection}",
+            "get the next train going towards {eastDirection}"
           ]
         }
       ]

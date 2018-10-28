@@ -14,7 +14,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the CTA Alexa skill, you can ask for train arrival estimated from your home!';
+    const speechText = 'Welcome to the CTA Alexa skill, get CTA arrival estimates from your home!';
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -29,12 +29,96 @@ const TrainArrivalEstimatesRequestHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'TrainArrivalEstimatesRequest';
   },
   handle(handlerInput) {
-    //get the next train times here
-    const speechText = 'Hello World!';
+      const {attributesManager} = handlerInput;
+      const { request } = handlerInput.requestEnvelope;
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .getResponse();
+      let outputText = '';
+      let direction = '';
+      let trainDestination = '';
+      let slots = request.intent.slots;
+      if(slots.eastDirection.hasOwnProperty('value')){
+          direction = slots.eastDirection.value;
+          trainDestination = 'Service toward 63rd St';
+      }else if(slots.westDirection.hasOwnProperty('value')){
+          direction = slots.westDirection.value;
+          trainDestination = 'Service toward Harlem/Lake';
+      }else{
+          const speechText = 'Sorry, I don\'t know that destination. Try again.';
+          return handlerInput.responseBuilder
+              .speak(speechText)
+              .withShouldEndSession(false)
+              .getResponse();
+      }
+
+    //get the next train times here
+    let trainXMLData = helperFunctions.getJsonObjectFromXMLFeed(API_CALL);
+    let estimateData = trainXMLData.then(function(jsonArrivalTimes){
+        let etas = jsonArrivalTimes.ctatt.eta;
+        let etaEstimates = {};
+        for(let eta of etas){
+          console.log(eta);
+          eta.prdt = eta.prdt[0];
+          eta.arrT = eta.arrT[0];
+          let currentTime = helperFunctions.convertDateTimeToTime(eta.prdt);
+          let arrivalTime = helperFunctions.convertDateTimeToTime(eta.arrT);
+          let waitingTime = helperFunctions.convertMillisecondsToMinutes(helperFunctions.getTimeDifference(currentTime, arrivalTime));
+          waitingTime = helperFunctions.minutesToHumanHearable(parseInt(waitingTime));
+          let standardArrivalTime = helperFunctions.convertMiltaryTimeToStandardTime(arrivalTime);
+
+          eta.stpDe = eta.stpDe[0];
+          eta.isApp = eta.isApp[0];
+          eta.isDly = eta.isDly[0];
+          if(etaEstimates.hasOwnProperty(eta.stpDe)){
+              etaEstimates[eta.stpDe].push({
+                      'wait': waitingTime,
+                      'arrival_time': standardArrivalTime,
+                      'is_approaching': eta.isApp,
+                      'is_delayed':  eta.isDly
+                  });
+          }else{
+              etaEstimates[eta.stpDe] = [{
+                'wait': waitingTime,
+                'arrival_time': standardArrivalTime,
+                'is_approaching': eta.isApp,
+                'is_delayed':  eta.isDly
+              }];
+          }
+
+        };
+
+        //get the data of the direction the train is going
+        etaEstimates = etaEstimates[trainDestination];
+        return [direction, etaEstimates];
+
+    });
+
+    let outputString = estimateData.then(function (destinationData) {
+        let direction = destinationData[0];
+        let estimates = destinationData[1];
+        let speechOutput = 'The next train towards '+direction+ ' is ';
+        speechOutput += estimates[0].wait + ' away';
+        speechOutput += ', and due to arrive at '+ estimates[0].arrival_time+'.' ;
+        speechOutput += (estimates[0].is_approaching === '1' ? ' It is approaching.': '');
+        speechOutput +=  (estimates[0].is_delayed === '1' ? ' It is currently delayed.': '');
+        if(estimates.length == 2){
+            speechOutput += ' There is a following train ';
+            speechOutput += estimates[1].wait + ' away';
+            speechOutput += ', and due to arrive at '+ estimates[0].arrival_time+'.' ;
+            speechOutput += (estimates[0].is_approaching === '1' ? ' It is approaching.': '');
+            speechOutput +=  (estimates[0].is_delayed === '1' ? ' It is currently delayed.': '');
+        }
+
+        return speechOutput;
+
+    }).then(function(speechText){
+        return handlerInput.responseBuilder
+            .speak(speechText)
+            .getResponse();
+    });
+
+    return outputString;
+
+
   },
 };
 

@@ -16,8 +16,24 @@
       },
       "resources": {
         "manifest": {
-          "eTag": "a938e99f45f980a20ad7c166d8de5b25"
-        }
+          "eTag": "f9123503a6d4d2671f208b67594f7b49"
+        },
+        "interactionModel": {
+          "en-US": {
+            "eTag": "46ae4cc39ab4b35a05e69d8bfd274902"
+          }
+        },
+        "lambda": [
+          {
+            "arn": "arn:aws:lambda:us-east-1:003831592960:function:ask-custom-CTA-Track-default",
+            "functionName": "arn:aws:lambda:us-east-1:003831592960:function:ask-custom-CTA-Track-default",
+            "awsRegion": "us-east-1",
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "revisionId": "1b2f0ded-5688-40c5-b5ff-3fe6a6a42471"
+          }
+        ]
       }
     }
   }

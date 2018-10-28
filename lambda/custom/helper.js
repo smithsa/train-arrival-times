@@ -9,13 +9,13 @@ const HelperFunctions = {
      * @param {(string)} xmlUrl
      * @returns {Promise}
      */
-    'getJsonObjectFromXMLFeed': (xmlUrl) => {
+    'getJsonObjectFromXMLFeed': async (xmlUrl) => {
         // A promise which makes a call to the api and waits for data
         let ctaArrivalTimes = new Promise(function(resolve, reject) {
             https.get(xmlUrl, (resp) => {
                 let data = '';
 
-                // A chunk of data has been recieved.
+                // A chunk of data has been received.
                 resp.on('data', (chunk) => {
                     data += chunk;
                 });
@@ -78,6 +78,16 @@ const HelperFunctions = {
         return (millseconds * 0.001)/60;
     },
     /**
+     * Converts date and time 00000000 00:00:00 to time 00:00
+     *
+     * @param {(string)} dadateTimete
+     * @returns {string}
+     */
+    'convertDateTimeToTime': (dateTime) => {
+        let time = dateTime.split(' ')[1];
+        return time.substr(0, 5);
+    },
+    /**
      * Converts military time to standard time
      *
      * @param {(number)} string
@@ -88,11 +98,27 @@ const HelperFunctions = {
         let hour = parseInt(splitTimeString[0], 10);
         let minutes = splitTimeString[1];
 
-        let dayPeriod = (hour >= 12 && hour !== 24) ? 'PM' : 'AM';
+        let dayPeriod = (hour >= 12 && hour !== 24) ? ' PM' : ' AM';
         let standardHour = (hour > 12) ? (hour-12) : ((hour == 0) ? 12: hour);
 
         return standardHour+':'+minutes+dayPeriod;
 
+    },
+    /**
+     * Converts minutes to time more pleasant to humans
+     *
+     * @param {(int)} input_minutes
+     * @returns {string}
+     */
+    'minutesToHumanHearable': (input_minutes) => {
+        if(input_minutes < 60){
+            return input_minutes + ' minutes';
+        }
+        let hours = (input_minutes / 60);
+        let rhours = Math.floor(hours);
+        let minutes = (hours - rhours) * 60;
+        let rminutes = Math.round(minutes);
+        return rhours + (rhours == 1 ? ' hour': ' hours') +' and ' + rminutes + (rminutes == 1 ? ' minute' : ' minutes');
     }
 
 };
