@@ -14,7 +14,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the CTA Alexa skill, get CTA arrival estimates from your home!';
+    const speechText = 'Welcome to the CTA train tracker Alexa skill, get CTA arrival estimates from your home!';
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -43,7 +43,7 @@ const TrainArrivalEstimatesRequestHandler = {
           direction = slots.westDirection.value;
           trainDestination = 'Service toward Harlem/Lake';
       }else{
-          const speechText = 'Sorry, I don\'t know that destination. Try again.';
+          const speechText = 'Sorry, I don\'t know that destination. Try asking again.';
           return handlerInput.responseBuilder
               .speak(speechText)
               .withShouldEndSession(false)
@@ -63,7 +63,9 @@ const TrainArrivalEstimatesRequestHandler = {
           let arrivalTime = helperFunctions.convertDateTimeToTime(eta.arrT);
           let waitingTime = helperFunctions.convertMillisecondsToMinutes(helperFunctions.getTimeDifference(currentTime, arrivalTime));
           waitingTime = helperFunctions.minutesToHumanHearable(parseInt(waitingTime));
+
           let standardArrivalTime = helperFunctions.convertMiltaryTimeToStandardTime(arrivalTime);
+          console.log('standardArrivalTime:', standardArrivalTime);
 
           eta.stpDe = eta.stpDe[0];
           eta.isApp = eta.isApp[0];
@@ -103,9 +105,9 @@ const TrainArrivalEstimatesRequestHandler = {
         if(estimates.length == 2){
             speechOutput += ' There is a following train ';
             speechOutput += estimates[1].wait + ' away';
-            speechOutput += ', and due to arrive at '+ estimates[0].arrival_time+'.' ;
-            speechOutput += (estimates[0].is_approaching === '1' ? ' It is approaching.': '');
-            speechOutput +=  (estimates[0].is_delayed === '1' ? ' It is currently delayed.': '');
+            speechOutput += ', and due to arrive at '+ estimates[1].arrival_time+'.' ;
+            speechOutput += (estimates[1].is_approaching === '1' ? ' It is approaching.': '');
+            speechOutput +=  (estimates[1].is_delayed === '1' ? ' It is currently delayed.': '');
         }
 
         return speechOutput;
