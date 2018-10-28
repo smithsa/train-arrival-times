@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "austin train tracker",
+      "invocationName": "cta",
       "types": [
         {
           "values": [
@@ -79,7 +79,25 @@
             "get the next train to {westDirection}",
             "get the next train to {eastDirection}",
             "get the next train going towards {westDirection}",
-            "get the next train going towards {eastDirection}"
+            "get the next train going towards {eastDirection}",
+            "{eastDirection}",
+            "I'm going {westDirection}",
+            "I'm going {eastDirection}",
+            "I am going {westDirection}",
+            "I am going {westDirection}",
+            "We are going {eastDirection}",
+            "We are going {westDirection}",
+            "We're are going {eastDirection}",
+            "We're are going {westDirection}",
+            "I'm going to {westDirection}",
+            "I'm going to {eastDirection}",
+            "I am going to {westDirection}",
+            "I am going to {westDirection}",
+            "We are going to {eastDirection}",
+            "We are going to {westDirection}",
+            "We're are going to {eastDirection}",
+            "To {westDirection}",
+            "To {eastDirection}"
           ]
         }
       ]

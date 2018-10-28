@@ -112,7 +112,7 @@ const HelperFunctions = {
      */
     'minutesToHumanHearable': (input_minutes) => {
         if(input_minutes < 60){
-            return input_minutes + ' minutes';
+            return input_minutes + (input_minutes == 1 ? ' minute' : ' minutes');
         }
         let hours = (input_minutes / 60);
         let rhours = Math.floor(hours);

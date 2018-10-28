@@ -5,11 +5,11 @@
         "en-US": {
           "summary": "Sample Short Description",
           "examplePhrases": [
-            "Alexa ask austin train tracker when the next train to the city is",
-            "Alexa ask austin train tracker when the next train to Harlem is",
-            "Alexa ask austin train tracker when the next train to work is"
+            "Alexa ask austin train when the next train to the city is",
+            "Alexa ask austin train when the next train to Harlem is",
+            "Alexa ask austin train when the next train to work is"
           ],
-          "name": "Austin Train Tacker",
+          "name": "Austin Train",
           "description": "Get train arrival times for the Green line."
         }
       },

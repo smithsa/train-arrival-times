@@ -14,7 +14,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the CTA train tracker Alexa skill, get CTA arrival estimates from your home! What do you need to know?';
+    const speechText = 'Tell me which way you are going?';
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -43,7 +43,7 @@ const TrainArrivalEstimatesRequestHandler = {
           direction = slots.westDirection.value;
           trainDestination = 'Service toward Harlem/Lake';
       }else{
-          const speechText = 'Sorry, I don\'t know that destination. Try asking again.';
+          const speechText = 'Sorry, I don\'t know that destination. Try saying it again, or another phrase like: get me the next train toward the city.';
           return handlerInput.responseBuilder
               .speak(speechText)
               .withShouldEndSession(false)
