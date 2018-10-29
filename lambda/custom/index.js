@@ -3,9 +3,10 @@
 
 const Alexa = require('ask-sdk-core');
 const helperFunctions = require('helper');
+const config = require('config');
 
-const STATION_CODE = "41260";
-const API_KEY = "ee1c97f9b7a5442ea271d0e6072ea800";
+const STATION_CODE = config.STATION_CODE;
+const API_KEY = config.API_KEY;
 const API_BASE_URL = "https://lapi.transitchicago.com/api/1.0/ttarrivals.aspx";
 const API_CALL = API_BASE_URL+"?key="+API_KEY+"&mapid="+STATION_CODE;
 
