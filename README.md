@@ -1,6 +1,6 @@
 # Train Tracker (Alexa Skill)
 
-This is an Alexa skill that uses the CTA Train Tracker API to predict arrival times based on station. I created this for personal use.
+This is an Alexa skill that uses the Chicago Transit Authority Train Tracker API to predict arrival times based on station. I created this for personal use.
 
 [View Demo]()
 
