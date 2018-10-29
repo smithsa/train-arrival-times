@@ -2,7 +2,7 @@
 
 This is an Alexa skill that uses the Chicago Transit Authority Train Tracker API to predict arrival times based on station. I created this for personal use.
 
-[View Demo]()
+[View Demo](https://youtu.be/SKBHk-v7yr8)
 
 ## Prerequisites
 *  [Node.js (4.5 or greater)](https://nodejs.org)
@@ -81,7 +81,7 @@ You can navigate to the [Alexa Skills Kit Developer Console](https://developer.a
 
 Refer to Amazon's [Alexa Skills Kit Developer Console: Test](https://www.youtube.com/watch?v=lYImJ2H__BY) video from more instruction on how to test withing the console.
 
-To understand the commands you can give the skill watch the [view demo]().
+To understand the commands you can give the skill watch the [view demo](https://youtu.be/SKBHk-v7yr8).
 
 ## Built With
 *  [ASK SDK v2](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs)
