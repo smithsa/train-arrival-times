@@ -81,6 +81,7 @@
             "get the next train going towards {westDirection}",
             "get the next train going towards {eastDirection}",
             "{eastDirection}",
+            "{westDirection}",
             "I'm going {westDirection}",
             "I'm going {eastDirection}",
             "I am going {westDirection}",
