@@ -45,16 +45,21 @@ This is an Alexa skill that uses the CTA Train Tracker API to predict arrival ti
 
 8. Edit the contents of the file that is now config.js. Set the appropriate values for API_KEY and STATION CODE. You can reference the [Chicago Train Authority Transit Tracker API](https://www.transitchicago.com/assets/1/6/cta_Train_Tracker_API_Developer_Guide_and_Documentation.pdf) for more information.
 
-9. Now install node packages
+9. Copy contents of the newly cloned repository into the project you created at step 4.
+
+10. Navigate to `lambda/custom` within the new project
+    ```
+    cd your-project-name/lambda/custom
+    ```
+
+11. Now install node packages
     ```
     npm install
     ```
 
-10. Copy contents of the newly cloned repository into the project you created at step 4.
+12. Ensure the name of the skill you used for step 4 matches in "skill.json." Additionally, set invocation name in models/en-US.json.
 
-11. Ensure the name of the skill you used for step 4 matches in "skill.json." Additionally, set invocation name in models/en-US.json.
-
-12. Deploy the code to AWS Lambda
+13. Deploy the code to AWS Lambda
 	```
 	ask deploy
 	```
