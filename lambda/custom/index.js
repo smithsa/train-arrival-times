@@ -111,6 +111,11 @@ const TrainArrivalEstimatesRequestHandler = {
             speechOutput +=  (estimates[1].is_delayed === '1' ? ' It is currently delayed.': '');
         }
 
+        let lowerCaseDirection = direction.toLowerCase();
+        if(lowerCaseDirection.includes('work')){
+            speechOutput = speechOutput + ' <audio src="https://s3.amazonaws.com/elasticbeanstalk-us-east-1-003831592960/workworkwork.mp3" />';
+        }
+
         return speechOutput;
 
     }).then(function(speechText){
